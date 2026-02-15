@@ -32,13 +32,30 @@ def main():
         output = convert_to_colored_ascii(image, args.width, args.charset)
 
     if args.output:
-        with open(args.output, "w") as f:
-            # Strip ANSI codes if saving to file unless it's a specific requirement
-            # For now, we save raw output
-            f.write(output)
+        try:
+            with open(args.output, "w") as f:
+                f.write(output)
             print(f"Output saved to {args.output}")
+        except Exception as e:
+            print(f"Error saving to {args.output}: {e}")
     else:
         print(output)
+        try:
+            save_choice = input("\nWould you like to save this output to a file? (y/n): ").lower().strip()
+            if save_choice == 'y':
+                filename = input("Enter filename (e.g., output.txt): ").strip()
+                if filename:
+                    with open(filename, "w") as f:
+                        f.write(output)
+                    print(f"Output saved to {filename}")
+                else:
+                    print("Save cancelled: No filename provided.")
+        except EOFError:
+            pass
+        except KeyboardInterrupt:
+            print("\nSave cancelled.")
+            sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
