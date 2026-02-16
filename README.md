@@ -70,6 +70,6 @@ python3 main.py headshot.jpg --mode colored-ascii --output headshot.html
 
 ## 🎮 Development
 
-Built with ❤️ by Tyrel using Python and the Pillow library. 
+Built with ❤️ by Nciibi using Python and the Pillow library. 
 
 Feel free to fork, submit PRs, or report issues!
